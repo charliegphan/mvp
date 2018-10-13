@@ -12,18 +12,18 @@ module.exports = {
   mode: 'development',
   module: {
     rules: [
-      // {
-      //   test: /\.css$/,
-      //   loader: [
-      //     'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: true,
-      //       },
-      //     },
-      //   ],
-      // },
+      {
+        test: /\.css$/,
+        loader: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
       {
         test: /\.jsx$/,
         exclude: /(node_modules)/,
