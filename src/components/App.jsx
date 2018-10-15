@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Inputs from './Inputs.jsx';
+import PushDay from './PushDay.jsx';
+import PullDay from './PullDay.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,12 +37,23 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Inputs
-          {...this.state}
-          handleSquatChange={this.handleSquatChange}
-          handleBenchChange={this.handleBenchChange}
-          handleDeadliftChange={this.handleDeadliftChange}
-        />
+        <div>
+          <h1>6GOD</h1>
+          <Inputs
+            {...this.state}
+            handleSquatChange={this.handleSquatChange}
+            handleBenchChange={this.handleBenchChange}
+            handleDeadliftChange={this.handleDeadliftChange}
+          />
+        </div>
+
+        <div>
+          <PushDay />
+          <PullDay />
+          <PushDay />
+          <PullDay />
+        </div>
+
       </div>
     );
   }
