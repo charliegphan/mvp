@@ -4,9 +4,11 @@ const Inputs = ({
   squat, 
   bench, 
   deadlift,
+  ohp,
   handleSquatChange,
   handleBenchChange,
   handleDeadliftChange,
+  handleOHPChange,
 }) => {
   return (
     <div>
@@ -44,6 +46,18 @@ const Inputs = ({
           </label>
         </div>
 
+        <div>
+          <label>
+            OHP
+            <input
+              type="number"
+              value={ohp}
+              onChange={e => handleOHPChange(e.target.value)}
+            />
+          </label>
+        </div>
+
+       <button>Save Workout</button>
       </form>
     </div>
   );

@@ -5,7 +5,8 @@
   background:	#383838;
   margin-left: 20px;
   transition: all .1s ease-in-out;
-  border-radius:6px;
+  border-radius: 6px;
+  box-shadow: 0 0 10px black;
 }
 
 .workout:hover {

@@ -1,20 +1,6 @@
-const linearProgression = {
-  one: 0.70,
-  two: 0.72,
-  three: 0.74,
-  four: 0.76,
-  five: 0.78,
-  six: 0.80,
-};
+const linearProgression = [0.70, 0.72, 0.74, 0.76, 0.78, 0.80];
 
-const periodicProgression = {
-  one: 0.65,
-  two: 0.70,
-  three: 0.75,
-  four: 0.80,
-  five: 0.85,
-  six: 0.90,
-};
+const periodicProgression = [0.65, 0.70, 0.75, 0.80, 0.85, 0.90];
 
 module.exports = {
   linearProgression,

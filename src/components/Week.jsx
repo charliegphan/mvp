@@ -6,8 +6,17 @@ import Workout from './Workout.jsx';
 
 import styles from '../../styles/Week.css';
 
-const Week = ({ workoutType, week }) => {
+const Week = ({ 
+  workoutType,
+  week,
+  config,
+  squat,
+  bench,
+  deadlift,
+  ohp 
+}) => {
   let day;
+  let props;
   if (workoutType === 'pull') {
     day = <PullDay />;
   } else {
@@ -17,8 +26,8 @@ const Week = ({ workoutType, week }) => {
   return (
     <div className={styles.week}>
       {day}
-      {week.map((completion) => {
-        return <Workout />;
+      {week.map((completion, i) => {
+        return <Workout workoutType={workoutType} config={config} day={i} squat={squat} bench={bench} deadlift={deadlift} ohp={ohp} completion={completion}/>;
       })}
     </div>
   );
