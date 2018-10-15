@@ -1,8 +1,9 @@
 .table {
   border: 1px solid black;
-  margin: 5px;
+  margin: 20px;
   background:	#383838;
   color: white;
   width: 130px;
   font-size: 14px;
+  border-radius:6px;
 }

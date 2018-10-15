@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Inputs from './Inputs.jsx';
-import PushDay from './PushDay.jsx';
-import PullDay from './PullDay.jsx';
+import Week from './Week.jsx';
+
+import styles from '../../styles/App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +12,12 @@ class App extends React.Component {
       squat: 0,
       bench: 0,
       deadlift: 0,
+      completion: [
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0],
+      ],
     };
 
     this.handleSquatChange = this.handleSquatChange.bind(this);
@@ -19,11 +26,7 @@ class App extends React.Component {
   }
 
   handleSquatChange(squat) {
-    if (squat === null) {
-      this.setState({ squat: 0 });
-    } else {
-      this.setState({ squat: parseInt(squat, 10) });
-    }
+    this.setState({ squat: parseInt(squat, 10) });
   }
 
   handleBenchChange(bench) {
@@ -35,10 +38,14 @@ class App extends React.Component {
   }
 
   render() {
+    const { completion } = this.state;
     return (
-      <div>
+      <div className={styles.container}>
         <div>
-          <h1>6GOD</h1>
+          <div>
+            <h1>6GOD</h1>
+          </div>
+
           <Inputs
             {...this.state}
             handleSquatChange={this.handleSquatChange}
@@ -48,10 +55,10 @@ class App extends React.Component {
         </div>
 
         <div>
-          <PushDay />
-          <PullDay />
-          <PushDay />
-          <PullDay />
+          <Week workoutType={'push'} week={completion[0]} config={'linearProgression'} />
+          <Week workoutType={'pull'} week={completion[1]} config={'linearProgression'} />
+          <Week workoutType={'push'} week={completion[2]} config={'periodicProgression'} />
+          <Week workoutType={'pull'} week={completion[3]} config={'periodicProgression'} />
         </div>
 
       </div>

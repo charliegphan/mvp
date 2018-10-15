@@ -19,25 +19,32 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  6GOD
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  A workout program for those looking to make progress in strength.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Users will be able to input their one rep max for their squat, bench, and deadlift and will have a 6 week workout program
+  generated for them to follow. The numbers are generated using proven Russian Weightlifting principles. 
 
 ## Problem ##
   > Describe the problem your product solves.
+  Most people looking to improve are not following workout programs - they make up their own workouts and see little progress,
+  or they are following something not proven and still see little progress.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Users don't have to do any research on the ideal numbers they should using. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
-
+  Just input your max squat, deadlift, bench and have a workout program generated for you.
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
 

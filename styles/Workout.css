@@ -1,0 +1,13 @@
+.workout {
+  font-size: 12px;
+  border: 1px solid black;
+  color: white;
+  background:	#383838;
+  margin-left: 20px;
+  transition: all .1s ease-in-out;
+  border-radius:6px;
+}
+
+.workout:hover {
+  transform: scale(1.05); 
+}
