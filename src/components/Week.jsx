@@ -9,11 +9,13 @@ import styles from '../../styles/Week.css';
 const Week = ({ 
   workoutType,
   week,
+  weekNumber,
   config,
   squat,
   bench,
   deadlift,
-  ohp 
+  ohp,
+  handleCompletionChange,
 }) => {
   let day;
   let props;
@@ -27,7 +29,19 @@ const Week = ({
     <div className={styles.week}>
       {day}
       {week.map((completion, i) => {
-        return <Workout workoutType={workoutType} config={config} day={i} squat={squat} bench={bench} deadlift={deadlift} ohp={ohp} completion={completion}/>;
+        return (
+          <Workout
+            workoutType={workoutType}
+            config={config}
+            weekNumber={weekNumber}
+            day={i}
+            squat={squat}
+            bench={bench}
+            deadlift={deadlift}
+            ohp={ohp}
+            completion={completion}
+            handleCompletionChange={handleCompletionChange}
+          />);
       })}
     </div>
   );

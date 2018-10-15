@@ -1,4 +1,4 @@
-.workout {
+.workout0 {
   font-size: 12px;
   border: 1px solid black;
   color: white;
@@ -9,6 +9,51 @@
   box-shadow: 0 0 10px black;
 }
 
-.workout:hover {
+.workout1 {
+  font-size: 12px;
+  border: 1px solid black;
+  color: white;
+  background:	#6B8E23;
+  margin-left: 20px;
+  transition: all .1s ease-in-out;
+  border-radius: 6px;
+  box-shadow: 0 0 10px black;
+}
+
+.workout2 {
+  font-size: 12px;
+  border: 1px solid black;
+  color: white;
+  background:	#FFA500;
+  margin-left: 20px;
+  transition: all .1s ease-in-out;
+  border-radius: 6px;
+  box-shadow: 0 0 10px black;
+}
+
+.workout3 {
+  font-size: 12px;
+  border: 1px solid black;
+  color: white;
+  background:	#800000;
+  margin-left: 20px;
+  transition: all .1s ease-in-out;
+  border-radius: 6px;
+  box-shadow: 0 0 10px black;
+}
+
+.workout0:hover {
+  transform: scale(1.05); 
+}
+
+.workout1:hover {
+  transform: scale(1.05); 
+}
+
+.workout2:hover {
+  transform: scale(1.05); 
+}
+
+.workout3:hover {
   transform: scale(1.05); 
 }

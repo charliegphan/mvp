@@ -57,7 +57,7 @@ const Inputs = ({
           </label>
         </div>
 
-       <button>Save Workout</button>
+        <button type="button">Save Workout</button>
       </form>
     </div>
   );

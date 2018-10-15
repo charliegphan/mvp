@@ -26,10 +26,10 @@ class App extends React.Component {
     this.handleBenchChange = this.handleBenchChange.bind(this);
     this.handleDeadliftChange = this.handleDeadliftChange.bind(this);
     this.handleOHPChange = this.handleOHPChange.bind(this);
+    this.handleCompletionChange = this.handleCompletionChange.bind(this);
   }
 
   handleSquatChange(squat) {
-    // console.log(squat);
     this.setState({ squat: parseInt(squat, 10) });
   }
 
@@ -43,6 +43,21 @@ class App extends React.Component {
 
   handleOHPChange(ohp) {
     this.setState({ ohp: parseInt(ohp, 10) });
+  }
+
+  handleCompletionChange(week, day) {
+    console.log(week, day);
+    const { completion } = this.state;
+    const completionCopy = completion.map(arr => arr);
+
+    completionCopy[week][day] += 1;
+    if (completionCopy[week][day] > 3) {
+      completionCopy[week][day] = 0;
+    }
+
+    console.log(completionCopy);
+
+    this.setState({ completion: completionCopy });
   }
 
   render() {
@@ -71,18 +86,38 @@ class App extends React.Component {
 
         <div>
           <Week
-            week={0}
+            weekNumber={0}
             week={completion[0]}
             config={'linearProgression'}
             workoutType={'push'}
+            handleCompletionChange={this.handleCompletionChange}
             {...this.state}
           />
 
           <Week
-            week={0}
-            week={completion[0]}
+            weekNumber={1}
+            week={completion[1]}
             config={'linearProgression'}
             workoutType={'pull'}
+            handleCompletionChange={this.handleCompletionChange}
+            {...this.state}
+          />
+
+          <Week
+            weekNumber={2}
+            week={completion[2]}
+            config={'periodicProgression'}
+            workoutType={'push'}
+            handleCompletionChange={this.handleCompletionChange}
+            {...this.state}
+          />
+
+          <Week
+            weekNumber={3}
+            week={completion[3]}
+            config={'periodicProgression'}
+            workoutType={'pull'}
+            handleCompletionChange={this.handleCompletionChange}
             {...this.state}
           />
         </div>
@@ -93,22 +128,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-// <Week 
-// workoutType={'pull'} 
-// week={completion[1]} 
-// config={'linearProgression'} 
-// />
-
-// <Week 
-// workoutType={'push'} 
-// week={completion[2]} 
-// config={'periodicProgression'} 
-// />
-
-// <Week 
-// workoutType={'pull'} 
-// week={completion[3]} 
-// config={'periodicProgression'} 
-// />
