@@ -4,6 +4,7 @@ import axios from 'axios';
 import Inputs from './Inputs.jsx';
 import Week from './Week.jsx';
 import Audio from './Audio.jsx';
+import Load from './Load.jsx';
 
 import styles from '../../styles/App.css';
 
@@ -12,7 +13,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       workoutName: '',
+      search: '',
       preloaded: false,
+      exists: false,
+      added: false,
       squat: 0,
       bench: 0,
       deadlift: 0,
@@ -31,7 +35,9 @@ class App extends React.Component {
     this.handleOHPChange = this.handleOHPChange.bind(this);
     this.handleCompletionChange = this.handleCompletionChange.bind(this);
     this.handleWorkoutNameChange = this.handleWorkoutNameChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
     this.saveWorkout = this.saveWorkout.bind(this);
+    this.fetchWorkout = this.fetchWorkout.bind(this);
   }
 
   handleSquatChange(squat) {
@@ -54,6 +60,32 @@ class App extends React.Component {
     this.setState({ workoutName });
   }
 
+  handleCompletionChange(week, day) {
+    const { completion } = this.state;
+    const completionCopy = completion.map(arr => arr);
+
+    completionCopy[week][day] += 1;
+    if (completionCopy[week][day] > 3) {
+      completionCopy[week][day] = 0;
+    }
+
+    this.setState({ completion: completionCopy });
+  }
+
+  handleSearchChange(search) {
+    this.setState({ search });
+  }
+
+  fetchWorkout() {
+    const { search } = this.state;
+
+    axios.get('/api/reviews', {
+      params: {
+        search,
+      },
+    }).then((response) => console.log(response));
+  }
+
   saveWorkout() {
     const {
       workoutName,
@@ -71,30 +103,53 @@ class App extends React.Component {
       deadlift,
       ohp,
       completion,
-    }).then(response => console.log(response))
-      .catch(err => console.log(err));
-  }
+    }).then((response) => {
+      console.log(response);
+      console.log('hit');
 
-  handleCompletionChange(week, day) {
-    const { completion } = this.state;
-    const completionCopy = completion.map(arr => arr);
-
-    completionCopy[week][day] += 1;
-    if (completionCopy[week][day] > 3) {
-      completionCopy[week][day] = 0;
-    }
-
-    this.setState({ completion: completionCopy });
+      this.setState({ exists: false, added: true });
+    })
+      .catch((err) => {
+        console.log(err);
+        this.setState({ exists: true });
+      });
   }
 
   render() {
     const {
+      workoutName,
       completion,
       squat,
       bench,
       deadlift,
       ohp,
+      exists,
+      added,
     } = this.state;
+
+    let displayExists;
+
+    if (exists) {
+      displayExists = (
+        <div className={styles.exists}>
+          This workout name already exists!
+        </div>
+        );
+    } else  {
+      displayExists = (<div />);
+    }
+
+    let displayAdded;
+    if (added) {
+      displayAdded = (
+        <div className={styles.added}>
+          Saved workout!
+        </div>
+        );
+    } else  {
+      displayAdded = (<div />);
+    }
+
     return (
       <div className={styles.container}>
         <div>
@@ -102,6 +157,11 @@ class App extends React.Component {
             <h1>6GOD</h1>
           </div>
           <Audio/>
+
+          <Load
+            handleSearchChange={this.handleSearchChange}
+            fetchWorkout={this.fetchWorkout}
+          />
 
           <Inputs
             {...this.state}
@@ -112,9 +172,13 @@ class App extends React.Component {
             handleWorkoutNameChange={this.handleWorkoutNameChange}
             saveWorkout={this.saveWorkout}
           />
+          {displayExists}
+          {displayAdded}
         </div>
 
+
         <div>
+
           <Week
             weekNumber={0}
             week={completion[0]}

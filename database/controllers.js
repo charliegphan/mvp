@@ -10,7 +10,7 @@ const add = (workout, res) => {
     completion: workout.completion,
   });
 
-  Workout.count({ workoutName: workout.workoutName }, (err, count) => {
+  Workout.countDocuments({ workoutName: workout.workoutName }, (err, count) => {
     if (err) {
       console.log(err);
     }
@@ -18,9 +18,9 @@ const add = (workout, res) => {
     if (count > 0) {
       res.sendStatus(409);
     } else {
-      newWorkout.save((err) => {
-        if (err) {
-          console.log(err);
+      newWorkout.save((error) => {
+        if (error) {
+          console.log(error);
         }
         res.sendStatus(201);
       });
@@ -28,4 +28,10 @@ const add = (workout, res) => {
   });
 };
 
-module.exports = { add };
+const fetch = (workoutName, res) => {
+  Workout.findOne({ workoutName }, (err, doc) => {
+
+  });
+};
+
+module.exports = { add, fetch };
