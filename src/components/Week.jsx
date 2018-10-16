@@ -9,6 +9,7 @@ import styles from '../../styles/Week.css';
 const Week = ({ 
   workoutType,
   week,
+  day,
   weekNumber,
   config,
   squat,
@@ -17,17 +18,17 @@ const Week = ({
   ohp,
   handleCompletionChange,
 }) => {
-  let day;
-  let props;
+  let workout;
   if (workoutType === 'pull') {
-    day = <PullDay />;
+    workout = <PullDay />;
   } else {
-    day = <PushDay />;
+    workout = <PushDay />;
   }
 
   return (
     <div className={styles.week}>
-      {day}
+      day{day}
+      {workout}
       {week.map((completion, i) => {
         return (
           <Workout

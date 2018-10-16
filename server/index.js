@@ -1,11 +1,15 @@
+require('dotenv').config();
 const express = require('express');
+const bodyParser = require('body-parser');
+const { add } = require('../database/controllers');
 
 const app = express();
-
+app.use(bodyParser.json());
 app.use(express.static('./public'));
 
-app.post('/trips', (req, res) => {
+app.post('/api/workouts', (req, res) => {
 
+  add(req.body, res);
 });
 
 app.listen(8080, (err) => {

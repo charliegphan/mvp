@@ -9,10 +9,24 @@ const Inputs = ({
   handleBenchChange,
   handleDeadliftChange,
   handleOHPChange,
+  handleWorkoutNameChange,
+  workoutName,
+  saveWorkout,
 }) => {
   return (
     <div>
       <form>
+        <div>
+          <label>
+            workout name
+            <input
+              type="text"
+              value={workoutName}
+              onChange={e => handleWorkoutNameChange(e.target.value)}
+            />
+          </label>
+        </div>
+
         <div>
           <label>
             squat
@@ -57,7 +71,12 @@ const Inputs = ({
           </label>
         </div>
 
-        <button type="button">Save Workout</button>
+        <button 
+          type="button"
+          onClick={() => saveWorkout()}
+        >
+        Save Workout
+        </button>
       </form>
     </div>
   );
