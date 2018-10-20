@@ -41,6 +41,9 @@ class App extends React.Component {
   }
 
   handleSquatChange(squat) {
+    if (squat === '') {
+      this.setState({ squat: 0 });
+    }
     this.setState({ squat: parseInt(squat, 10) });
   }
 
@@ -76,17 +79,52 @@ class App extends React.Component {
     this.setState({ search });
   }
 
+  updateWorkout() {
+    const {
+      workoutName,
+      squat,
+      bench,
+      deadlift,
+      ohp,
+      completion,
+    } = this.state;
+
+    axios.patch('/api/workouts', {
+      workoutName,
+      squat,
+      bench,
+      deadlift,
+      ohp,
+      completion,
+    }).then((response) => {
+    })
+  }
+
   fetchWorkout() {
+
     const { search } = this.state;
 
-    axios.get('/api/reviews', {
+    axios.get('/api/workouts', {
       params: {
         search,
       },
-    }).then((response) => console.log(response));
+    })
+      .then((response) => {
+        this.setState({
+          search: '',
+          preloaded: true,
+          workoutName: response.data.workoutName,
+          squat: response.data.squat,
+          bench: response.data.bench,
+          deadlift: response.data.deadlift,
+          ohp: response.data.ohp,
+          completion: response.data.completion,
+        });
+      });
   }
 
   saveWorkout() {
+    console.log('save');
     const {
       workoutName,
       squat,
@@ -103,11 +141,22 @@ class App extends React.Component {
       deadlift,
       ohp,
       completion,
-    }).then((response) => {
-      console.log(response);
-      console.log('hit');
-
-      this.setState({ exists: false, added: true });
+    }).then(() => {
+      this.setState({
+        exists: false,
+        added: true,
+        workoutName: '',
+        squat: '',
+        bench: '',
+        deadlift: '',
+        ohp: '',
+        completion: [
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+          [0, 0, 0, 0, 0, 0],
+        ],
+      });
     })
       .catch((err) => {
         console.log(err);
@@ -125,6 +174,8 @@ class App extends React.Component {
       ohp,
       exists,
       added,
+      search,
+      preloaded,
     } = this.state;
 
     let displayExists;
@@ -150,6 +201,27 @@ class App extends React.Component {
       displayAdded = (<div />);
     }
 
+    let button;
+    if (preloaded) {
+      button = (
+        <button 
+          type="button"
+          onClick={() => this.updateWorkout()}
+        >
+        Update Workout
+        </button>
+      );
+    } else {
+      button = (
+        <button 
+          type="button"
+          onClick={() => this.saveWorkout()}
+        >
+        Save Workout
+        </button>
+      );
+    }
+
     return (
       <div className={styles.container}>
         <div>
@@ -161,6 +233,7 @@ class App extends React.Component {
           <Load
             handleSearchChange={this.handleSearchChange}
             fetchWorkout={this.fetchWorkout}
+            search={search}
           />
 
           <Inputs
@@ -174,6 +247,7 @@ class App extends React.Component {
           />
           {displayExists}
           {displayAdded}
+          {button}
         </div>
 
 

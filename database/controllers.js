@@ -30,8 +30,22 @@ const add = (workout, res) => {
 
 const fetch = (workoutName, res) => {
   Workout.findOne({ workoutName }, (err, doc) => {
+    if (err) {
+      console.log(err);
+    }
 
+    res.send(doc);
   });
 };
 
-module.exports = { add, fetch };
+const update = (workoutName, workout, res) => {
+  Workout.findOne({ workoutName }, workout, (err) => {
+    if (err) {
+      res.status(500);
+    }
+
+    res.sendStatus(202);
+  });
+};
+
+module.exports = { add, fetch, update };

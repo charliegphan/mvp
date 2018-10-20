@@ -52,8 +52,8 @@ const Workout = ({
     >
       <table className={style}>
         <tr>
-          <th>reps</th>
-          <th>sets</th> 
+          <th>sets</th>
+          <th>reps</th> 
           <th>weight</th>
         </tr>
 

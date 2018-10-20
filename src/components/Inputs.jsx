@@ -70,13 +70,6 @@ const Inputs = ({
             />
           </label>
         </div>
-
-        <button 
-          type="button"
-          onClick={() => saveWorkout()}
-        >
-        Save Workout
-        </button>
       </form>
     </div>
   );

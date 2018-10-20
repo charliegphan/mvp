@@ -27,7 +27,7 @@ const Week = ({
 
   return (
     <div className={styles.week}>
-      day{day}
+      <p>day {weekNumber + 1}</p>
       {workout}
       {week.map((completion, i) => {
         return (
